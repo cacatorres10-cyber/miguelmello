@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 175 84% 26%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 166 76% 97%;
+    --accent-foreground: 175 84% 22%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 175 84% 32%;
+
+    /* Paleta da marca (teal) */
+    --brand-50: 166 76% 97%;
+    --brand-100: 167 85% 89%;
+    --brand-200: 168 84% 78%;
+    --brand-400: 172 66% 50%;
+    --brand-500: 173 80% 40%;
+    --brand-600: 175 84% 32%;
+    --brand-700: 175 77% 26%;
+
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 0 0% 7%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 7%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 172 66% 50%;
+    --primary-foreground: 175 90% 8%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 215 16% 65%;
+
+    --accent: 175 60% 12%;
+    --accent-foreground: 168 84% 78%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 172 66% 50%;
+
+    --brand-50: 175 60% 12%;
+    --brand-100: 175 55% 18%;
+    --brand-200: 174 60% 28%;
+    --brand-400: 172 66% 50%;
+    --brand-500: 171 70% 60%;
+    --brand-600: 168 84% 72%;
+    --brand-700: 168 84% 82%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-brand-200/60 text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Camada de vidro usada nos cards e botoes */
+  .glass {
+    @apply border border-black/[0.06] bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04];
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Esconde a barra de rolagem mantendo o scroll */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
