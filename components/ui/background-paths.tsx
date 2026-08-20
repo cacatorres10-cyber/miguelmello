@@ -6,7 +6,14 @@ import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function FloatingPaths({ position }: { position: number }) {
+export function FloatingPaths({
+    position,
+    cover = false,
+}: {
+    position: number;
+    /** Estica o traçado para cobrir toda a área, sem faixas vazias. */
+    cover?: boolean;
+}) {
     const shouldReduceMotion = useReducedMotion();
     const paths = Array.from({ length: 36 }, (_, i) => ({
         id: i,
@@ -27,6 +34,7 @@ export function FloatingPaths({ position }: { position: number }) {
                 className="w-full h-full text-slate-950 dark:text-white"
                 viewBox="0 0 696 316"
                 fill="none"
+                preserveAspectRatio={cover ? "xMidYMid slice" : "xMidYMid meet"}
             >
                 <title>Background Paths</title>
                 {paths.map((path) => (
@@ -66,11 +74,17 @@ export function FloatingPaths({ position }: { position: number }) {
  * Camada de fundo animada. Pode ser usada sozinha (`<BackgroundPathsLayer />`)
  * atras de qualquer secao.
  */
-export function BackgroundPathsLayer({ className }: { className?: string }) {
+export function BackgroundPathsLayer({
+    className,
+    cover = false,
+}: {
+    className?: string;
+    cover?: boolean;
+}) {
     return (
         <div className={cn("absolute inset-0 overflow-hidden", className)}>
-            <FloatingPaths position={1} />
-            <FloatingPaths position={-1} />
+            <FloatingPaths position={1} cover={cover} />
+            <FloatingPaths position={-1} cover={cover} />
         </div>
     );
 }

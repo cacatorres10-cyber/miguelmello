@@ -41,7 +41,7 @@ export function MobileCta() {
               href={profile.whatsapp.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-brand-600 text-sm font-semibold text-white transition-colors hover:bg-brand-700 dark:text-neutral-950"
+              className="flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-brand-400 text-sm font-semibold text-neutral-950 transition-colors hover:bg-brand-400/90"
             >
               <WhatsAppIcon className="size-[1.05rem]" />
               {hero.primaryCta}
@@ -51,7 +51,7 @@ export function MobileCta() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="flex size-11 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-black/[0.05] hover:text-foreground dark:hover:bg-white/10"
+              className="flex size-11 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
             >
               <Instagram className="size-5" />
             </a>

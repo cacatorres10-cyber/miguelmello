@@ -38,15 +38,14 @@ export function ProfilePhoto({
     <div
       className={cn(
         "relative aspect-square w-full overflow-hidden rounded-[2rem]",
-        "bg-gradient-to-br from-brand-100 via-white to-brand-50",
-        "dark:from-brand-400/15 dark:via-neutral-900 dark:to-neutral-950",
-        "ring-1 ring-black/[0.06] dark:ring-white/10",
+        "bg-gradient-to-br from-brand-400/20 via-neutral-900 to-neutral-950",
+        "ring-1 ring-white/10",
         className,
       )}
     >
       {/* Monograma — fica atrás e aparece caso a foto ainda não exista */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <span className="select-none bg-gradient-to-br from-brand-600 to-brand-400 bg-clip-text text-6xl font-semibold tracking-tight text-transparent">
+        <span className="select-none bg-gradient-to-br from-brand-400 to-brand-400/40 bg-clip-text text-6xl font-semibold tracking-tight text-transparent">
           {initials}
         </span>
       </div>
@@ -64,10 +63,10 @@ export function ProfilePhoto({
         />
       )}
 
-      {/* Brilho suave sobre a imagem */}
+      {/* Escurece a base para a etiqueta flutuante ter contraste */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/20 dark:from-black/30 dark:to-white/5"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
       />
     </div>
   );

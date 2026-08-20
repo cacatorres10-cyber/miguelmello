@@ -39,15 +39,15 @@ que estiver escrito lá:
 | Frase principal e frases que se alternam | `hero` |
 | Texto "Sobre" e a lista de objetivos | `about` |
 | Serviços (adicionar, remover, reordenar) | `services.items` |
-| Frase da avaliação | `evaluation` |
-| Bloco de contato | `cta` |
+| Bloco de contato (inclui a frase da avaliação) | `cta` |
 | Rodapé | `footer` |
 | Título e descrição no Google / WhatsApp | `seo` |
 
 Alguns detalhes úteis:
 
 - **Adicionar um serviço:** copie um bloco de `services.items` e mude
-  `title`, `description` e `icon`. Os ícones disponíveis estão listados no
+  `title`, `summary` (frase curta do card), `description` (texto do
+  pop-up) e `icon`. Os ícones disponíveis estão listados no
   tipo `ServiceIcon` (e mapeados em
   [`components/sections/services.tsx`](components/sections/services.tsx)).
   A grade se reorganiza sozinha — o último card ocupa o espaço que sobrar.
@@ -68,14 +68,17 @@ Para usar outro nome ou formato, ajuste `profile.photo` em `content/site.ts`.
 
 ## Recursos
 
-- Animação **Background Paths** no topo e no bloco de contato
+- Fundo preto com o traçado **Background Paths** animado na página inteira
+  (camada fixa — o conteúdo desliza por cima)
 - Título revelado letra a letra e frases que se alternam sozinhas
+- Cards de serviço que **abrem em pop-up** com o texto completo e atalho
+  para o WhatsApp (fecha no X, no fundo ou com Esc)
 - Botões de **WhatsApp** (com mensagem pronta) e **Instagram**
 - **Salvar contato** (baixa um `.vcf` para a agenda do celular)
 - **Compartilhar** (usa o compartilhamento nativo do celular)
 - Barra fixa de contato no celular ao rolar a página
-- Modo claro e escuro (botão no canto superior direito)
-- Respeita `prefers-reduced-motion` (sem animações para quem prefere)
+- Respeita `prefers-reduced-motion`: em aparelhos com "reduzir movimento"
+  ligado o site aparece pronto, sem animação
 - SEO com dados estruturados (schema.org) e Open Graph
 
 ---

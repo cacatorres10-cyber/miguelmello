@@ -9,54 +9,55 @@ export function About() {
   return (
     <section id="sobre" className="relative py-20 sm:py-28">
       <div className="container">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Texto */}
-          <div className="max-w-xl">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-brand-600">
-                <span className="h-px w-6 bg-brand-400/60" />
-                {about.eyebrow}
-              </span>
-            </Reveal>
+        <div className="mx-auto max-w-3xl text-center">
+          <Reveal>
+            <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-brand-400">
+              <span className="h-px w-6 bg-brand-400/50" />
+              {about.eyebrow}
+            </span>
+          </Reveal>
 
-            <Reveal delay={0.05}>
-              <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                {about.title}
-              </h2>
-            </Reveal>
+          <Reveal delay={0.05}>
+            <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              {about.title}
+            </h2>
+          </Reveal>
 
-            {about.paragraphs.map((paragraph, index) => (
-              <Reveal key={index} delay={0.1 + index * 0.05}>
-                <p className="mt-5 text-pretty text-[1.05rem] leading-relaxed text-muted-foreground">
-                  {paragraph}
-                </p>
+          <Reveal delay={0.1}>
+            <p className="mt-5 text-pretty text-lg leading-relaxed text-white/75">
+              {about.lead}
+            </p>
+          </Reveal>
+
+          {about.paragraphs.map((paragraph, index) => (
+            <Reveal key={index} delay={0.15 + index * 0.05}>
+              <p className="mt-4 text-pretty leading-relaxed text-white/55">
+                {paragraph}
+              </p>
+            </Reveal>
+          ))}
+        </div>
+
+        {/* Objetivos em etiquetas — leitura rápida, sem parágrafos longos */}
+        <div className="mx-auto mt-12 max-w-4xl">
+          <Reveal>
+            <p className="text-center text-sm font-medium text-white/45">
+              {about.goalsTitle}
+            </p>
+          </Reveal>
+
+          <ul className="mt-6 flex flex-wrap justify-center gap-2.5">
+            {about.goals.map((goal, index) => (
+              <Reveal as="li" key={goal} delay={index * 0.05} y={12}>
+                <span className="surface inline-flex items-center gap-2 rounded-full py-2 pl-2.5 pr-4 text-[0.9rem] text-white/85 transition-colors hover:border-brand-400/30 hover:bg-white/[0.06]">
+                  <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-400/15 text-brand-400">
+                    <Check className="size-3" strokeWidth={3} />
+                  </span>
+                  {goal}
+                </span>
               </Reveal>
             ))}
-          </div>
-
-          {/* Objetivos */}
-          <Reveal delay={0.15}>
-            <div className="glass rounded-3xl p-7 shadow-[0_20px_50px_-30px_rgba(15,23,42,0.4)] sm:p-9">
-              <h3 className="text-lg font-semibold tracking-tight">
-                {about.goalsTitle}
-              </h3>
-
-              <ul className="mt-6 space-y-4">
-                {about.goals.map((goal, index) => (
-                  <Reveal as="li" key={goal} delay={index * 0.06} y={12}>
-                    <div className="flex items-start gap-3">
-                      <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-700 dark:bg-brand-400/15 dark:text-brand-400">
-                        <Check className="size-3.5" strokeWidth={3} />
-                      </span>
-                      <span className="text-pretty leading-relaxed">
-                        {goal}
-                      </span>
-                    </div>
-                  </Reveal>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
+          </ul>
         </div>
       </div>
     </section>

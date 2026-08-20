@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import {
   Bone,
   Footprints,
   PersonStanding,
+  Plus,
   ShieldCheck,
   Stethoscope,
   Trophy,
@@ -11,8 +15,8 @@ import {
 
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { ServiceDialog } from "@/components/service-dialog";
 import { site, type ServiceIcon } from "@/content/site";
-import { cn } from "@/lib/utils";
 
 const ICONS: Record<ServiceIcon, LucideIcon> = {
   idosos: PersonStanding,
@@ -24,86 +28,65 @@ const ICONS: Record<ServiceIcon, LucideIcon> = {
   palmilhas: Footprints,
 };
 
-const COLUMNS_LG = 3;
-const COLUMNS_SM = 2;
-
-/**
- * Faz o último card ocupar o espaço que sobra na grade,
- * qualquer que seja a quantidade de serviços cadastrados.
- */
-function trailingSpan(total: number) {
-  const restLg = total % COLUMNS_LG;
-  const restSm = total % COLUMNS_SM;
-
-  return cn(
-    restSm === 1 && "sm:col-span-2",
-    restLg === 1 && "lg:col-span-3",
-    restLg === 2 && "lg:col-span-2",
-  );
-}
-
 const { services } = site;
 
 export function Services() {
-  const total = services.items.length;
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const openService =
+    openIndex === null
+      ? null
+      : {
+          ...services.items[openIndex],
+          Icon: ICONS[services.items[openIndex].icon],
+        };
 
   return (
     <section id="servicos" className="relative py-20 sm:py-28">
-      {/* Fundo sutil para separar a seção */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-brand-50/70 to-transparent dark:via-brand-400/[0.05]"
-      />
+      <div className="container">
+        <SectionHeading eyebrow={services.eyebrow} title={services.title} />
 
-      <div className="container relative">
-        <SectionHeading
-          eyebrow={services.eyebrow}
-          title={services.title}
-          subtitle={services.subtitle}
-        />
-
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
+        <div className="mt-14 flex flex-wrap justify-center gap-3 sm:gap-4">
           {services.items.map((service, index) => {
             const Icon = ICONS[service.icon];
-            const isLast = index === total - 1;
-            const wide = isLast && trailingSpan(total) !== "";
 
             return (
               <Reveal
-                as="article"
                 key={service.title}
-                delay={(index % COLUMNS_LG) * 0.08}
-                className={cn(
-                  "group relative flex flex-col rounded-3xl border border-black/[0.06] bg-card p-6 sm:p-7",
-                  "shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-all duration-300",
-                  "hover:-translate-y-1 hover:border-brand-200 hover:shadow-[0_24px_50px_-30px_rgba(15,23,42,0.45)]",
-                  "dark:border-white/[0.08] dark:hover:border-brand-400/30",
-                  wide && "sm:flex-row sm:items-start sm:gap-6",
-                  isLast && trailingSpan(total),
-                )}
+                delay={(index % 3) * 0.08}
+                className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]"
               >
-                <span
-                  className={cn(
-                    "flex size-12 shrink-0 items-center justify-center rounded-2xl bg-brand-50 text-brand-600 transition-colors duration-300",
-                    "group-hover:bg-brand-100 dark:bg-brand-400/10 dark:text-brand-400 dark:group-hover:bg-brand-400/20",
-                  )}
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(index)}
+                  aria-haspopup="dialog"
+                  className="surface group relative flex h-full w-full flex-col items-start rounded-3xl p-6 text-left transition-all duration-300 hover:-translate-y-1 hover:border-brand-400/30 hover:bg-white/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-950"
                 >
-                  <Icon className="size-6" strokeWidth={1.7} />
-                </span>
+                  <span className="flex size-12 items-center justify-center rounded-2xl bg-brand-400/10 text-brand-400 ring-1 ring-brand-400/15 transition-colors duration-300 group-hover:bg-brand-400/20">
+                    <Icon className="size-6" strokeWidth={1.6} />
+                  </span>
 
-                <div className={cn(!wide && "mt-5")}>
-                  <h3 className="text-[1.05rem] font-semibold leading-snug tracking-tight">
+                  <h3 className="mt-5 text-[1.05rem] font-semibold leading-snug tracking-tight text-white">
                     {service.title}
                   </h3>
-                  <p className="mt-2 text-pretty text-[0.95rem] leading-relaxed text-muted-foreground">
-                    {service.description}
+                  <p className="mt-1.5 text-[0.9rem] leading-snug text-white/45">
+                    {service.summary}
                   </p>
-                </div>
+
+                  <span
+                    aria-hidden
+                    className="absolute right-5 top-5 flex size-8 items-center justify-center rounded-full border border-white/10 text-white/40 transition-all duration-300 group-hover:rotate-90 group-hover:border-brand-400/40 group-hover:text-brand-400"
+                  >
+                    <Plus className="size-4" />
+                  </span>
+                </button>
               </Reveal>
             );
           })}
         </div>
       </div>
+
+      <ServiceDialog service={openService} onClose={() => setOpenIndex(null)} />
     </section>
   );
 }

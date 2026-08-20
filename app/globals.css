@@ -100,14 +100,19 @@
   }
 
   ::selection {
-    @apply bg-brand-200/60 text-foreground;
+    @apply bg-brand-400/30 text-foreground;
   }
 }
 
 @layer utilities {
   /* Camada de vidro usada nos cards e botoes */
   .glass {
-    @apply border border-black/[0.06] bg-white/70 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.04];
+    @apply border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+  }
+
+  /* Superficie dos cards sobre o fundo animado */
+  .surface {
+    @apply border border-white/[0.08] bg-white/[0.03] backdrop-blur-md;
   }
 
   .text-balance {

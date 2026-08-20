@@ -6,8 +6,9 @@
  *  Para atualizar o cartão, edite apenas aqui: as seções,
  *  os serviços e os contatos se ajustam sozinhos na página.
  *
- *  • Adicionar um serviço → inclua um item em `services`
- *  • Remover um objetivo  → apague a linha em `goals`
+ *  • Adicionar um serviço → inclua um item em `services.items`
+ *    (o card mostra só o título; o texto completo abre no pop-up)
+ *  • Remover um objetivo  → apague a linha em `about.goals`
  *  • Trocar telefone/@    → altere em `profile`
  */
 
@@ -22,7 +23,11 @@ export type ServiceIcon =
 
 export type Service = {
   icon: ServiceIcon;
+  /** Título do card. */
   title: string;
+  /** Frase curta que aparece no card. */
+  summary: string;
+  /** Texto completo, exibido no pop-up. */
   description: string;
 };
 
@@ -43,11 +48,7 @@ export const site = {
     university: "Universidade Federal de Uberlândia (UFU)",
     universityShort: "UFU",
     location: "Atendimento domiciliar",
-    specialties: [
-      "Musculoesquelética",
-      "Esportiva",
-      "Reabilitação funcional",
-    ],
+    specialties: ["Musculoesquelética", "Esportiva", "Reabilitação funcional"],
     whatsapp: {
       display: "(34) 99888-3002",
       href: `https://wa.me/${WHATSAPP_E164}?text=${encodeURIComponent(
@@ -62,14 +63,12 @@ export const site = {
   },
 
   hero: {
-    badge: "Atendimento domiciliar individualizado",
+    badge: "Fisioterapia domiciliar",
     /** Título animado letra a letra. */
     title: "Miguel Mello",
     headline: "Fisioterapia personalizada no conforto da sua casa",
-    subheadline:
-      "Cuidado individualizado para você recuperar seus movimentos, reduzir dores e voltar à sua rotina com segurança.",
-    /** Frases que se alternam sozinhas abaixo do título. */
-    rotatingPrefix: "Fisioterapia para",
+    /** Frases que se alternam sozinhas. */
+    rotatingPrefix: "Para",
     rotatingWords: [
       "reduzir dores",
       "recuperar movimentos",
@@ -78,15 +77,16 @@ export const site = {
       "prevenir lesões",
     ],
     primaryCta: "Agendar avaliação",
-    secondaryCta: "Ver serviços",
+    secondaryCta: "Serviços",
   },
 
   about: {
     eyebrow: "Sobre",
     title: "Quem vai cuidar de você",
+    lead: "Cuidado individualizado para você recuperar seus movimentos, reduzir dores e voltar à sua rotina com segurança.",
     paragraphs: [
-      "Sou Miguel Mello, fisioterapeuta formado pela Universidade Federal de Uberlândia (UFU), com atuação em fisioterapia musculoesquelética, esportiva e reabilitação funcional.",
-      "Realizo atendimentos domiciliares individualizados, planejados de acordo com as necessidades, limitações e objetivos de cada paciente.",
+      "Fisioterapeuta formado pela Universidade Federal de Uberlândia (UFU), com atuação em fisioterapia musculoesquelética, esportiva e reabilitação funcional.",
+      "Atendimentos domiciliares individualizados, planejados de acordo com as necessidades, limitações e objetivos de cada paciente.",
     ],
     goalsTitle: "Meu objetivo é ajudar você a:",
     goals: [
@@ -102,64 +102,67 @@ export const site = {
   services: {
     eyebrow: "Serviços",
     title: "Como posso te ajudar",
-    subtitle:
-      "Cada atendimento é planejado a partir da sua história, das suas limitações e dos seus objetivos.",
+    /** Texto do botão dentro do pop-up. */
+    dialogCta: "Falar sobre isso",
     items: [
       {
         icon: "idosos",
         title: "Fisioterapia para idosos",
+        summary: "Funcionalidade, equilíbrio e independência",
         description:
           "Atendimento voltado à manutenção e recuperação da funcionalidade, força, equilíbrio e independência, contribuindo para uma rotina mais ativa e segura.",
       },
       {
         icon: "musculoesqueletica",
         title: "Fisioterapia musculoesquelética",
+        summary: "Tratamento de dores e disfunções",
         description:
           "Tratamento de dores e disfunções relacionadas ao sistema musculoesquelético, com foco na recuperação do movimento e da função.",
       },
       {
         icon: "esportiva",
         title: "Fisioterapia esportiva",
+        summary: "Da lesão ao retorno ao esporte",
         description:
           "Reabilitação e acompanhamento de atletas e praticantes de atividade física, desde o tratamento da lesão até o retorno seguro ao esporte.",
       },
       {
         icon: "cirurgia",
         title: "Reabilitação pré e pós-operatória",
+        summary: "Preparação e recuperação cirúrgica",
         description:
           "Preparação para procedimentos cirúrgicos e recuperação no período pós-operatório, respeitando cada fase do processo de reabilitação.",
       },
       {
         icon: "recovery",
         title: "Recovery",
+        summary: "Recuperação após treinos e competições",
         description:
           "Estratégias voltadas à recuperação física após treinos, competições e períodos de maior demanda, auxiliando na preparação para os próximos estímulos.",
       },
       {
         icon: "prevencao",
         title: "Prevenção de lesões",
+        summary: "Força, mobilidade e controle",
         description:
           "Identificação de fatores que podem aumentar o risco de lesões e elaboração de estratégias para melhorar força, mobilidade, controle e capacidade física.",
       },
       {
         icon: "palmilhas",
         title: "Palmilhas individualizadas",
+        summary: "Conforto e distribuição de cargas",
         description:
           "Avaliação das necessidades de cada paciente e confecção de palmilhas individualizadas, buscando melhorar a distribuição das cargas, o conforto e a funcionalidade durante as atividades do dia a dia e na prática esportiva.",
       },
     ] satisfies Service[],
   },
 
-  evaluation: {
-    text: "Seu tratamento começa com uma avaliação individualizada",
-  },
-
   cta: {
     eyebrow: "Contato",
+    lead: "Seu tratamento começa com uma avaliação individualizada",
     title: "Agende sua avaliação",
     subtitle:
       "Dê o primeiro passo para cuidar da sua saúde e recuperar sua funcionalidade.",
-    note: "Entre em contato e agende seu atendimento.",
   },
 
   footer: {

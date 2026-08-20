@@ -19,35 +19,25 @@ export function SectionHeading({
   const centered = align === "center";
 
   return (
-    <div
-      className={cn(
-        "max-w-2xl",
-        centered && "mx-auto text-center",
-        className,
-      )}
-    >
+    <div className={cn("max-w-2xl", centered && "mx-auto text-center", className)}>
       {eyebrow ? (
         <Reveal>
-          <span
-            className={cn(
-              "inline-flex items-center gap-2 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-brand-600",
-            )}
-          >
-            <span className="h-px w-6 bg-brand-400/60" />
+          <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-brand-400">
+            <span className="h-px w-6 bg-brand-400/50" />
             {eyebrow}
           </span>
         </Reveal>
       ) : null}
 
       <Reveal delay={0.05}>
-        <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           {title}
         </h2>
       </Reveal>
 
       {subtitle ? (
         <Reveal delay={0.1}>
-          <p className="mt-4 text-pretty text-[1.05rem] leading-relaxed text-muted-foreground">
+          <p className="mt-4 text-pretty leading-relaxed text-white/60">
             {subtitle}
           </p>
         </Reveal>
