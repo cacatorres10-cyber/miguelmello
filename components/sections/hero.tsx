@@ -93,7 +93,7 @@ export function Hero() {
             initial={reduce ? false : { opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.25, ease: EASE_OUT }}
-            className="order-first mx-auto w-full max-w-[14rem] sm:max-w-[17rem] lg:order-last lg:max-w-sm"
+            className="order-first mx-auto w-full max-w-[15rem] sm:max-w-[17rem] lg:order-last lg:max-w-sm"
           >
             <div className="relative">
               <div
@@ -111,7 +111,7 @@ export function Hero() {
               {/* Etiqueta flutuante com as especialidades */}
               <motion.div
                 {...fadeUp(reduce, 0.9)}
-                className="glass absolute -bottom-5 left-1/2 w-[92%] -translate-x-1/2 rounded-2xl px-4 py-3 text-center shadow-lg lg:text-left"
+                className="glass mt-3 w-full rounded-2xl px-4 py-3 text-center shadow-lg sm:absolute sm:-bottom-5 sm:left-1/2 sm:mt-0 sm:w-[92%] sm:-translate-x-1/2 lg:text-left"
               >
                 <p className="text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/60">
                   Áreas de atuação

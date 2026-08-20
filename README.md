@@ -58,11 +58,14 @@ Alguns detalhes úteis:
   arquivo. O texto que aparece na tela é o `display`. O link abre a
   conversa direto, sem mensagem pré-escrita.
 
-## 📸 Como colocar a foto
+## 📸 A foto
 
-Salve a foto do Miguel em `public/miguel-mello.jpg` (quadrada, ~1200 px).
-Enquanto ela não existir, o site mostra um monograma "MM" no lugar.
-Para usar outro nome ou formato, ajuste `profile.photo` em `content/site.ts`.
+A foto do Miguel está em `public/miguel-mello.jpg` e é exibida em um
+retrato 4:5. Para trocar, basta substituir o arquivo por outro com o
+mesmo nome (retrato em pé, rosto na parte de cima do enquadramento).
+Para usar outro nome ou formato, ajuste `profile.photo` em
+`content/site.ts`. Se o arquivo sumir, o site mostra um monograma "MM"
+no lugar — nada quebra.
 
 ---
 

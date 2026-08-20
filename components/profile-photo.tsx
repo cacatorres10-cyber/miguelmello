@@ -37,7 +37,7 @@ export function ProfilePhoto({
   return (
     <div
       className={cn(
-        "relative aspect-square w-full overflow-hidden rounded-[2rem]",
+        "relative aspect-[4/5] w-full overflow-hidden rounded-[2rem]",
         "bg-gradient-to-br from-brand-400/20 via-neutral-900 to-neutral-950",
         "ring-1 ring-white/10",
         className,

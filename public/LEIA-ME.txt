@@ -1,15 +1,13 @@
-Coloque aqui a foto do Miguel com o nome:
+A foto do Miguel já está aqui: miguel-mello.jpg
 
-    miguel-mello.jpg
-
-(pode ser .jpg ou .png — se trocar a extensão, ajuste o campo
-`profile.photo` em content/site.ts)
+Para trocar, basta salvar a nova imagem com esse mesmo nome
+(ou ajustar o campo `profile.photo` em content/site.ts).
 
 Dicas para a foto:
-• formato quadrado (ex.: 1200 x 1200 px)
-• rosto centralizado, com folga nas bordas
-• fundo limpo e boa iluminação
+• retrato em pé, proporção próxima de 4:5 (ex.: 1000 x 1250 px)
+• rosto na parte de cima do enquadramento
+• boa iluminação e fundo limpo
 • até ~500 KB para o site carregar rápido
 
-Enquanto a foto não estiver aqui, o site mostra um monograma "MM"
+Se o arquivo for removido, o site mostra um monograma "MM"
 no lugar — nada quebra.
