@@ -1,6 +1,7 @@
 import { Instagram } from "lucide-react";
 
 import { WhatsAppIcon } from "@/components/icons";
+import { SectionShade } from "@/components/section-shade";
 import { site } from "@/content/site";
 
 const { footer, profile } = site;
@@ -11,7 +12,9 @@ const socialLink =
 export function SiteFooter() {
   return (
     <footer className="relative border-t border-white/[0.08] py-10">
-      <div className="container flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
+      <SectionShade />
+
+      <div className="container relative flex flex-col items-center gap-6 text-center sm:flex-row sm:justify-between sm:text-left">
         <div>
           <p className="text-sm font-semibold tracking-tight text-white">
             {footer.signature}

@@ -15,6 +15,7 @@ import {
 
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
+import { SectionShade } from "@/components/section-shade";
 import { ServiceDialog } from "@/components/service-dialog";
 import { site, type ServiceIcon } from "@/content/site";
 
@@ -43,7 +44,9 @@ export function Services() {
 
   return (
     <section id="servicos" className="relative py-20 sm:py-28">
-      <div className="container">
+      <SectionShade />
+
+      <div className="container relative">
         <SectionHeading eyebrow={services.eyebrow} title={services.title} />
 
         <div className="mt-14 flex flex-wrap justify-center gap-3 sm:gap-4">

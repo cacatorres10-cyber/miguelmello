@@ -23,7 +23,7 @@ export function Hero() {
       {/* Escurece a área do texto para o traçado não competir com a leitura */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(65%_55%_at_28%_50%,rgba(10,10,10,0.9)_20%,transparent_75%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(75%_65%_at_30%_50%,rgba(10,10,10,0.95)_25%,transparent_80%)]"
       />
 
       <div className="container relative z-10 py-24 md:py-28">

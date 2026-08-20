@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
+import { SectionShade } from "@/components/section-shade";
 import { site } from "@/content/site";
 
 const { about } = site;
@@ -8,7 +9,9 @@ const { about } = site;
 export function About() {
   return (
     <section id="sobre" className="relative py-20 sm:py-28">
-      <div className="container">
+      <SectionShade />
+
+      <div className="container relative">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
             <span className="inline-flex items-center gap-2 text-[0.72rem] font-semibold uppercase tracking-[0.2em] text-brand-400">
