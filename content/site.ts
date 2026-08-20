@@ -33,8 +33,6 @@ export type Service = {
 
 /** Número no formato internacional, só dígitos (necessário para o wa.me). */
 const WHATSAPP_E164 = "5534998883002";
-const WHATSAPP_MESSAGE =
-  "Olá, Miguel! Vi seu cartão digital e gostaria de agendar uma avaliação.";
 
 export const site = {
   profile: {
@@ -51,9 +49,8 @@ export const site = {
     specialties: ["Musculoesquelética", "Esportiva", "Reabilitação funcional"],
     whatsapp: {
       display: "(34) 99888-3002",
-      href: `https://wa.me/${WHATSAPP_E164}?text=${encodeURIComponent(
-        WHATSAPP_MESSAGE,
-      )}`,
+      /* Abre a conversa direto, sem mensagem pré-escrita. */
+      href: `https://wa.me/${WHATSAPP_E164}`,
       tel: `+${WHATSAPP_E164}`,
     },
     instagram: {

@@ -104,6 +104,37 @@
   }
 }
 
+@layer components {
+  /*
+   * Traçado do fundo: um arco de luz percorre cada curva sem parar.
+   * A duração, o atraso e o tamanho do arco vêm do estilo inline
+   * de cada <path> (ver components/ui/background-paths.tsx).
+   */
+  .path-flow {
+    fill: none;
+    animation-name: path-flow;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes path-flow {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    /* um ciclo completo do tracejado — igual ao FLOW_CYCLE do componente */
+    stroke-dashoffset: -480px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .path-flow {
+    animation: none;
+    stroke-dasharray: none;
+  }
+}
+
 @layer utilities {
   /* Camada de vidro usada nos cards e botoes */
   .glass {

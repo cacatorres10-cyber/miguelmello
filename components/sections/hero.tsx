@@ -32,7 +32,7 @@ export function Hero() {
           <div className="text-center lg:text-left">
             <motion.span
               {...fadeUp(reduce)}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-[0.8rem] font-medium text-white/70 backdrop-blur-md"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-1.5 text-[0.8rem] font-medium text-white/80 backdrop-blur-md"
             >
               <span className="relative flex size-2">
                 {!reduce && (
@@ -51,18 +51,18 @@ export function Hero() {
 
             <motion.p
               {...fadeUp(reduce, 0.5)}
-              className="mt-4 text-base font-medium text-brand-400 sm:text-lg"
+              className="mt-4 text-base font-semibold text-brand-400 sm:text-lg"
             >
               {profile.role}
-              <span className="mx-2 text-white/25">·</span>
-              <span className="font-normal text-white/60">
+              <span className="mx-2 text-white/35">·</span>
+              <span className="font-normal text-white/75">
                 {profile.universityShort}
               </span>
             </motion.p>
 
             <motion.h2
               {...fadeUp(reduce, 0.6)}
-              className="mt-6 text-balance text-xl font-medium leading-snug text-white/85 sm:text-2xl"
+              className="mt-6 text-balance text-xl font-medium leading-snug text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.8)] sm:text-2xl"
             >
               {hero.headline}
             </motion.h2>
@@ -72,7 +72,7 @@ export function Hero() {
               {...fadeUp(reduce, 0.75)}
               className="mt-4 flex flex-wrap items-baseline justify-center gap-x-2 text-lg font-medium lg:justify-start"
             >
-              <span className="text-white/45">{hero.rotatingPrefix}</span>
+              <span className="text-white/65">{hero.rotatingPrefix}</span>
               <RotatingText
                 words={hero.rotatingWords}
                 className="font-semibold text-brand-400"
@@ -113,10 +113,10 @@ export function Hero() {
                 {...fadeUp(reduce, 0.9)}
                 className="glass absolute -bottom-5 left-1/2 w-[92%] -translate-x-1/2 rounded-2xl px-4 py-3 text-center shadow-lg lg:text-left"
               >
-                <p className="text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/45">
+                <p className="text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/60">
                   Áreas de atuação
                 </p>
-                <p className="mt-1 text-[0.82rem] font-medium leading-snug text-white/85">
+                <p className="mt-1 text-[0.82rem] font-medium leading-snug text-white">
                   {profile.specialties.join(" · ")}
                 </p>
               </motion.div>
@@ -131,7 +131,7 @@ export function Hero() {
         initial={reduce ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.4 }}
-        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-2 text-xs font-medium text-white/45 transition-colors hover:text-white lg:inline-flex"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 items-center gap-2 text-xs font-medium text-white/65 transition-colors hover:text-white lg:inline-flex"
       >
         {hero.secondaryCta}
         {reduce ? (

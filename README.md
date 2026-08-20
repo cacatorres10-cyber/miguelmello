@@ -55,8 +55,8 @@ Alguns detalhes úteis:
   linhas.
 - **WhatsApp:** o link usa o número em formato internacional
   (`5534998883002`), definido na constante `WHATSAPP_E164` no topo do
-  arquivo. O texto que aparece na tela é o `display`, e a mensagem já vem
-  pronta para o paciente enviar.
+  arquivo. O texto que aparece na tela é o `display`. O link abre a
+  conversa direto, sem mensagem pré-escrita.
 
 ## 📸 Como colocar a foto
 

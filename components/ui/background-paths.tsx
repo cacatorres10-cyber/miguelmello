@@ -1,10 +1,35 @@
 "use client";
 
-import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import type { CSSProperties, ReactNode } from "react";
+import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+
+/**
+ * O traçado corre por CSS (stroke-dashoffset), não por JavaScript:
+ * o navegador anima na GPU, o movimento nunca engasga e continua
+ * rodando mesmo enquanto o resto da página carrega.
+ *
+ * O padrão do tracejado é medido em unidades do viewBox — sempre o
+ * mesmo ciclo (FLOW_CYCLE) para todas as curvas, o que faz a volta
+ * fechar sem salto, independentemente do comprimento de cada uma.
+ * Os valores derivam do índice: nada de aleatório, para o HTML do
+ * servidor bater com o do cliente.
+ */
+const FLOW_CYCLE = 480;
+
+function pathStyle(index: number): CSSProperties {
+    const dash = 220 + ((index * 7) % 5) * 30; // arco visível: 220 → 340
+    const duration = 5 + ((index * 11) % 9); // 5s → 13s
+    const delay = ((index * 13) % 20) / 2; // 0s → 9,5s
+
+    return {
+        strokeDasharray: `${dash}px ${FLOW_CYCLE - dash}px`,
+        animationDuration: `${duration}s`,
+        animationDelay: `-${delay}s`,
+    };
+}
 
 export function FloatingPaths({
     position,
@@ -14,7 +39,6 @@ export function FloatingPaths({
     /** Estica o traçado para cobrir toda a área, sem faixas vazias. */
     cover?: boolean;
 }) {
-    const shouldReduceMotion = useReducedMotion();
     const paths = Array.from({ length: 36 }, (_, i) => ({
         id: i,
         d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${
@@ -24,45 +48,28 @@ export function FloatingPaths({
         } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
             684 - i * 5 * position
         } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-        color: `rgba(15,23,42,${0.1 + i * 0.03})`,
         width: 0.5 + i * 0.03,
+        opacity: Math.min(0.12 + i * 0.032, 0.95),
     }));
 
     return (
-        <div className="absolute inset-0 pointer-events-none" aria-hidden>
+        <div className="pointer-events-none absolute inset-0" aria-hidden>
             <svg
-                className="w-full h-full text-slate-950 dark:text-white"
+                className="h-full w-full text-slate-950 dark:text-white"
                 viewBox="0 0 696 316"
                 fill="none"
                 preserveAspectRatio={cover ? "xMidYMid slice" : "xMidYMid meet"}
             >
                 <title>Background Paths</title>
                 {paths.map((path) => (
-                    <motion.path
+                    <path
                         key={path.id}
+                        className="path-flow"
                         d={path.d}
                         stroke="currentColor"
                         strokeWidth={path.width}
-                        strokeOpacity={0.1 + path.id * 0.03}
-                        initial={
-                            shouldReduceMotion
-                                ? false
-                                : { pathLength: 0.3, opacity: 0.6 }
-                        }
-                        animate={
-                            shouldReduceMotion
-                                ? undefined
-                                : {
-                                      pathLength: 1,
-                                      opacity: [0.3, 0.6, 0.3],
-                                      pathOffset: [0, 1, 0],
-                                  }
-                        }
-                        transition={{
-                            duration: 20 + Math.random() * 10,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "linear",
-                        }}
+                        strokeOpacity={path.opacity}
+                        style={pathStyle(path.id + (position > 0 ? 0 : 5))}
                     />
                 ))}
             </svg>
@@ -71,8 +78,8 @@ export function FloatingPaths({
 }
 
 /**
- * Camada de fundo animada. Pode ser usada sozinha (`<BackgroundPathsLayer />`)
- * atras de qualquer secao.
+ * Camada de fundo animada. Pode ser usada sozinha
+ * (`<BackgroundPathsLayer />`) atrás de qualquer seção.
  */
 export function BackgroundPathsLayer({
     className,
@@ -106,29 +113,29 @@ export function BackgroundPaths({
     return (
         <div
             className={cn(
-                "relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950",
+                "relative flex min-h-screen w-full items-center justify-center overflow-hidden bg-white dark:bg-neutral-950",
                 className,
             )}
         >
             <BackgroundPathsLayer />
 
-            <div className="relative z-10 container mx-auto px-4 md:px-6 text-center">
+            <div className="container relative z-10 mx-auto px-4 text-center md:px-6">
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 2 }}
-                    className="max-w-4xl mx-auto"
+                    className="mx-auto max-w-4xl"
                 >
                     <h1
                         className={cn(
-                            "text-5xl sm:text-7xl md:text-8xl font-bold mb-8 tracking-tighter",
+                            "mb-8 text-5xl font-bold tracking-tighter sm:text-7xl md:text-8xl",
                             titleClassName,
                         )}
                     >
                         {words.map((word, wordIndex) => (
                             <span
                                 key={wordIndex}
-                                className="inline-block mr-4 last:mr-0"
+                                className="mr-4 inline-block last:mr-0"
                             >
                                 {word.split("").map((letter, letterIndex) => (
                                     <motion.span
@@ -143,9 +150,7 @@ export function BackgroundPaths({
                                             stiffness: 150,
                                             damping: 25,
                                         }}
-                                        className="inline-block text-transparent bg-clip-text 
-                                        bg-gradient-to-r from-neutral-900 to-neutral-700/80 
-                                        dark:from-white dark:to-white/80"
+                                        className="inline-block bg-gradient-to-r from-neutral-900 to-neutral-700/80 bg-clip-text text-transparent dark:from-white dark:to-white/80"
                                     >
                                         {letter}
                                     </motion.span>
@@ -155,26 +160,15 @@ export function BackgroundPaths({
                     </h1>
 
                     {children ?? (
-                        <div
-                            className="inline-block group relative bg-gradient-to-b from-black/10 to-white/10 
-                            dark:from-white/10 dark:to-black/10 p-px rounded-2xl backdrop-blur-lg 
-                            overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-                        >
+                        <div className="group relative inline-block overflow-hidden rounded-2xl bg-gradient-to-b from-black/10 to-white/10 p-px shadow-lg backdrop-blur-lg transition-shadow duration-300 hover:shadow-xl dark:from-white/10 dark:to-black/10">
                             <Button
                                 variant="ghost"
-                                className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
-                                bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                                text-black dark:text-white transition-all duration-300 
-                                group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                                hover:shadow-md dark:hover:shadow-neutral-800/50"
+                                className="rounded-[1.15rem] border border-black/10 bg-white/95 px-8 py-6 text-lg font-semibold text-black backdrop-blur-md transition-all duration-300 hover:bg-white/100 hover:shadow-md group-hover:-translate-y-0.5 dark:border-white/10 dark:bg-black/95 dark:text-white dark:hover:bg-black/100 dark:hover:shadow-neutral-800/50"
                             >
-                                <span className="opacity-90 group-hover:opacity-100 transition-opacity">
+                                <span className="opacity-90 transition-opacity group-hover:opacity-100">
                                     Discover Excellence
                                 </span>
-                                <span
-                                    className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
-                                    transition-all duration-300"
-                                >
+                                <span className="ml-3 opacity-70 transition-all duration-300 group-hover:translate-x-1.5 group-hover:opacity-100">
                                     →
                                 </span>
                             </Button>

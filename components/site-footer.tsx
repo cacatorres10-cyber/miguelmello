@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 const { footer, profile } = site;
 
 const socialLink =
-  "flex size-10 items-center justify-center rounded-full border border-white/10 text-white/50 transition-colors hover:border-brand-400/30 hover:bg-brand-400/10 hover:text-brand-400";
+  "flex size-10 items-center justify-center rounded-full border border-white/12 text-white/65 transition-colors hover:border-brand-400/30 hover:bg-brand-400/10 hover:text-brand-400";
 
 export function SiteFooter() {
   return (
@@ -16,7 +16,7 @@ export function SiteFooter() {
           <p className="text-sm font-semibold tracking-tight text-white">
             {footer.signature}
           </p>
-          <p className="mt-1 text-sm text-white/45">{footer.credential}</p>
+          <p className="mt-1 text-sm text-white/60">{footer.credential}</p>
         </div>
 
         <div className="flex items-center gap-2">
@@ -41,7 +41,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <p className="container mt-8 text-center text-xs text-white/30">
+      <p className="container mt-8 text-center text-xs text-white/45">
         © {new Date().getFullYear()} {profile.fullName}. Todos os direitos
         reservados.
       </p>

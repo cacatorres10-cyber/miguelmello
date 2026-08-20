@@ -114,7 +114,7 @@ export function ServiceDialog({ service, onClose }: ServiceDialogProps) {
               type="button"
               onClick={onClose}
               aria-label="Fechar"
-              className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full text-white/50 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+              className="absolute right-4 top-4 flex size-9 items-center justify-center rounded-full text-white/65 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
             >
               <X className="size-[1.1rem]" />
             </button>
@@ -131,7 +131,7 @@ export function ServiceDialog({ service, onClose }: ServiceDialogProps) {
                 {service.title}
               </h3>
 
-              <p className="mt-4 text-pretty leading-relaxed text-white/65">
+              <p className="mt-4 text-pretty leading-relaxed text-white/80">
                 {service.description}
               </p>
 

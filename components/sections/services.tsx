@@ -69,13 +69,13 @@ export function Services() {
                   <h3 className="mt-5 text-[1.05rem] font-semibold leading-snug tracking-tight text-white">
                     {service.title}
                   </h3>
-                  <p className="mt-1.5 text-[0.9rem] leading-snug text-white/45">
+                  <p className="mt-1.5 text-[0.9rem] leading-snug text-white/60">
                     {service.summary}
                   </p>
 
                   <span
                     aria-hidden
-                    className="absolute right-5 top-5 flex size-8 items-center justify-center rounded-full border border-white/10 text-white/40 transition-all duration-300 group-hover:rotate-90 group-hover:border-brand-400/40 group-hover:text-brand-400"
+                    className="absolute right-5 top-5 flex size-8 items-center justify-center rounded-full border border-white/15 text-white/55 transition-all duration-300 group-hover:rotate-90 group-hover:border-brand-400/40 group-hover:text-brand-400"
                   >
                     <Plus className="size-4" />
                   </span>

@@ -24,14 +24,14 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <p className="mt-5 text-pretty text-lg leading-relaxed text-white/75">
+            <p className="mt-5 text-pretty text-lg leading-relaxed text-white/90">
               {about.lead}
             </p>
           </Reveal>
 
           {about.paragraphs.map((paragraph, index) => (
             <Reveal key={index} delay={0.15 + index * 0.05}>
-              <p className="mt-4 text-pretty leading-relaxed text-white/55">
+              <p className="mt-4 text-pretty leading-relaxed text-white/70">
                 {paragraph}
               </p>
             </Reveal>
@@ -41,7 +41,7 @@ export function About() {
         {/* Objetivos em etiquetas — leitura rápida, sem parágrafos longos */}
         <div className="mx-auto mt-12 max-w-4xl">
           <Reveal>
-            <p className="text-center text-sm font-medium text-white/45">
+            <p className="text-center text-sm font-medium text-white/60">
               {about.goalsTitle}
             </p>
           </Reveal>
@@ -49,7 +49,7 @@ export function About() {
           <ul className="mt-6 flex flex-wrap justify-center gap-2.5">
             {about.goals.map((goal, index) => (
               <Reveal as="li" key={goal} delay={index * 0.05} y={12}>
-                <span className="surface inline-flex items-center gap-2 rounded-full py-2 pl-2.5 pr-4 text-[0.9rem] text-white/85 transition-colors hover:border-brand-400/30 hover:bg-white/[0.06]">
+                <span className="surface inline-flex items-center gap-2 rounded-full py-2 pl-2.5 pr-4 text-[0.9rem] text-white transition-colors hover:border-brand-400/30 hover:bg-white/[0.06]">
                   <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-400/15 text-brand-400">
                     <Check className="size-3" strokeWidth={3} />
                   </span>

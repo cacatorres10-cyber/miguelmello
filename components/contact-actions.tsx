@@ -64,7 +64,7 @@ export function InstagramButton({ className }: { className?: string }) {
 }
 
 const quietButton =
-  "h-12 rounded-full px-5 text-[0.95rem] font-medium text-white/60 transition-colors hover:bg-white/[0.08] hover:text-white";
+  "h-12 rounded-full px-5 text-[0.95rem] font-medium text-white/75 transition-colors hover:bg-white/[0.08] hover:text-white";
 
 export function SaveContactButton({ className }: { className?: string }) {
   const [saved, setSaved] = useState(false);

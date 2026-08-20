@@ -45,19 +45,19 @@ export function Contact() {
           </Reveal>
 
           <Reveal delay={0.05}>
-            <p className="mt-5 text-pretty text-lg font-medium leading-snug text-white/70">
+            <p className="mt-5 text-pretty text-lg font-medium leading-snug text-white/85">
               {cta.lead}
             </p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white sm:text-[2.6rem] sm:leading-[1.1]">
+            <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.7)] sm:text-[2.6rem] sm:leading-[1.1]">
               {cta.title}
             </h2>
           </Reveal>
 
           <Reveal delay={0.15}>
-            <p className="mx-auto mt-4 max-w-md text-pretty leading-relaxed text-white/55">
+            <p className="mx-auto mt-4 max-w-md text-pretty leading-relaxed text-white/75">
               {cta.subtitle}
             </p>
           </Reveal>
@@ -76,14 +76,14 @@ export function Contact() {
                     <Icon className="size-5" />
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/40">
+                    <span className="block text-[0.68rem] font-medium uppercase tracking-[0.14em] text-white/55">
                       {label}
                     </span>
                     <span className="block truncate text-[0.98rem] font-medium text-white">
                       {value}
                     </span>
                   </span>
-                  <ArrowUpRight className="size-4 shrink-0 text-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-400" />
+                  <ArrowUpRight className="size-4 shrink-0 text-white/45 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand-400" />
                 </a>
               </Reveal>
             ))}

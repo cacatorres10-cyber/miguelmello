@@ -27,7 +27,7 @@ export function AnimatedTitle({
   if (shouldReduceMotion) {
     return (
       <h1 className={cn("tracking-tighter", className)}>
-        <span className="bg-gradient-to-r from-neutral-900 to-neutral-700/80 bg-clip-text text-transparent dark:from-white dark:to-white/80">
+        <span className="bg-gradient-to-b from-white to-white/85 bg-clip-text text-transparent [text-shadow:0_4px_30px_rgba(0,0,0,0.55)]">
           {text}
         </span>
       </h1>
@@ -51,7 +51,7 @@ export function AnimatedTitle({
                   stiffness: 150,
                   damping: 25,
                 }}
-                className="inline-block bg-gradient-to-r from-neutral-900 to-neutral-700/80 bg-clip-text text-transparent dark:from-white dark:to-white/80"
+                className="inline-block bg-gradient-to-b from-white to-white/85 bg-clip-text text-transparent [text-shadow:0_4px_30px_rgba(0,0,0,0.55)]"
               >
                 {letter}
               </motion.span>

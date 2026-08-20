@@ -51,7 +51,7 @@ export function MobileCta() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="flex size-11 items-center justify-center rounded-full text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+              className="flex size-11 items-center justify-center rounded-full text-white/75 transition-colors hover:bg-white/10 hover:text-white"
             >
               <Instagram className="size-5" />
             </a>
