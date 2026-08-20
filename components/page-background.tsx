@@ -17,10 +17,10 @@ export function PageBackground() {
       aria-hidden
       className="pointer-events-none fixed inset-0 -z-10 bg-neutral-950"
     >
-      <BackgroundPathsLayer cover className="opacity-[0.38]" />
+      <BackgroundPathsLayer cover className="opacity-90" />
 
       {/* Véu: mantém o traçado presente, mas sem competir com a leitura */}
-      <div className="absolute inset-0 bg-neutral-950/55" />
+      <div className="absolute inset-0 bg-neutral-950/30" />
 
       {/* Brilho suave da marca no topo */}
       <div className="absolute inset-0 bg-[radial-gradient(60%_45%_at_75%_0%,rgba(20,184,166,0.13),transparent_70%)]" />

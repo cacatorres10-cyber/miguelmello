@@ -105,16 +105,30 @@
 }
 
 @layer components {
+  /* Trilho fixo de cada curva */
+  .path-rail {
+    fill: none;
+  }
+
   /*
-   * Traçado do fundo: um arco de luz percorre cada curva sem parar.
-   * A duração, o atraso e o tamanho do arco vêm do estilo inline
-   * de cada <path> (ver components/ui/background-paths.tsx).
+   * Arco de luz que percorre a curva. A duração, o atraso e o tamanho
+   * do arco vêm do estilo inline de cada <path>
+   * (ver components/ui/background-paths.tsx).
    */
   .path-flow {
     fill: none;
     animation-name: path-flow;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+  }
+
+  /* Deriva lenta do campo inteiro, em sentidos opostos */
+  .path-drift {
+    animation: path-drift 26s ease-in-out infinite alternate;
+  }
+
+  .path-drift-reverse {
+    animation: path-drift-reverse 34s ease-in-out infinite alternate;
   }
 }
 
@@ -128,12 +142,30 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .path-flow {
-    animation: none;
-    stroke-dasharray: none;
+@keyframes path-drift {
+  from {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(-2.5%, -1.5%, 0);
   }
 }
+
+@keyframes path-drift-reverse {
+  from {
+    transform: scale(1.08) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.08) translate3d(2.5%, 1.5%, 0);
+  }
+}
+
+/*
+ * O fundo continua correndo mesmo com "reduzir movimento" ligado:
+ * é o efeito que dá identidade ao cartão, e é um movimento ambiente,
+ * lento e periférico. As animações de entrada e de rolagem, essas
+ * sim, são desligadas (ver components/reveal.tsx e animated-title.tsx).
+ */
 
 @layer utilities {
   /* Camada de vidro usada nos cards e botoes */

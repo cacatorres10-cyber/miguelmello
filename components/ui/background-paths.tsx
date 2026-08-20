@@ -7,21 +7,21 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 /**
- * O traçado corre por CSS (stroke-dashoffset), não por JavaScript:
- * o navegador anima na GPU, o movimento nunca engasga e continua
- * rodando mesmo enquanto o resto da página carrega.
+ * Cada curva é desenhada duas vezes: um trilho fixo, bem apagado, e
+ * por cima dele um arco de luz que percorre a curva sem parar. É esse
+ * contraste que faz o movimento aparecer — só deslocar um tracejado
+ * uniforme quase não se percebe.
  *
- * O padrão do tracejado é medido em unidades do viewBox — sempre o
- * mesmo ciclo (FLOW_CYCLE) para todas as curvas, o que faz a volta
- * fechar sem salto, independentemente do comprimento de cada uma.
- * Os valores derivam do índice: nada de aleatório, para o HTML do
- * servidor bater com o do cliente.
+ * O ciclo do tracejado (FLOW_CYCLE) é o mesmo para todas as curvas,
+ * então a volta fecha sem salto, qualquer que seja o comprimento de
+ * cada uma. Os valores derivam do índice: nada de aleatório, para o
+ * HTML do servidor bater com o do cliente.
  */
 const FLOW_CYCLE = 480;
 
-function pathStyle(index: number): CSSProperties {
-    const dash = 220 + ((index * 7) % 5) * 30; // arco visível: 220 → 340
-    const duration = 5 + ((index * 11) % 9); // 5s → 13s
+function sparkStyle(index: number): CSSProperties {
+    const dash = 130 + ((index * 7) % 5) * 30; // arco de luz: 130 → 250
+    const duration = 4 + ((index * 11) % 7); // 4s → 10s
     const delay = ((index * 13) % 20) / 2; // 0s → 9,5s
 
     return {
@@ -49,11 +49,18 @@ export function FloatingPaths({
             684 - i * 5 * position
         } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
         width: 0.5 + i * 0.03,
-        opacity: Math.min(0.12 + i * 0.032, 0.95),
+        railOpacity: Math.min(0.04 + i * 0.009, 0.24),
+        sparkOpacity: Math.min(0.28 + i * 0.024, 0.9),
     }));
 
     return (
-        <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <div
+            className={cn(
+                "pointer-events-none absolute inset-0",
+                position > 0 ? "path-drift" : "path-drift-reverse",
+            )}
+            aria-hidden
+        >
             <svg
                 className="h-full w-full text-slate-950 dark:text-white"
                 viewBox="0 0 696 316"
@@ -62,15 +69,27 @@ export function FloatingPaths({
             >
                 <title>Background Paths</title>
                 {paths.map((path) => (
-                    <path
-                        key={path.id}
-                        className="path-flow"
-                        d={path.d}
-                        stroke="currentColor"
-                        strokeWidth={path.width}
-                        strokeOpacity={path.opacity}
-                        style={pathStyle(path.id + (position > 0 ? 0 : 5))}
-                    />
+                    <g key={path.id}>
+                        {/* trilho fixo */}
+                        <path
+                            className="path-rail"
+                            d={path.d}
+                            stroke="currentColor"
+                            strokeWidth={path.width}
+                            strokeOpacity={path.railOpacity}
+                        />
+                        {/* arco de luz que percorre a curva */}
+                        <path
+                            className="path-flow"
+                            d={path.d}
+                            stroke="currentColor"
+                            strokeWidth={path.width * 1.8}
+                            strokeOpacity={path.sparkOpacity}
+                            style={sparkStyle(
+                                path.id + (position > 0 ? 0 : 5),
+                            )}
+                        />
+                    </g>
                 ))}
             </svg>
         </div>

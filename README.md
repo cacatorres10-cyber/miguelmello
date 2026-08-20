@@ -80,8 +80,9 @@ no lugar — nada quebra.
 - **Salvar contato** (baixa um `.vcf` para a agenda do celular)
 - **Compartilhar** (usa o compartilhamento nativo do celular)
 - Barra fixa de contato no celular ao rolar a página
-- Respeita `prefers-reduced-motion`: em aparelhos com "reduzir movimento"
-  ligado o site aparece pronto, sem animação
+- Em aparelhos com "reduzir movimento" ligado, as animações de entrada
+  e de rolagem são desligadas; o traçado do fundo continua correndo,
+  por ser movimento ambiente, lento e periférico
 - SEO com dados estruturados (schema.org) e Open Graph
 
 ---
